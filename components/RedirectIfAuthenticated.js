@@ -13,7 +13,7 @@ const RedirectIfAuthenticated = () => {
       if (token) {
         router.push('/home');  // Redirect to home if token exists
       } else {
-        router.push('/signin');  // Redirect to signin if no token
+        router.push('/login');  // Redirect to signin if no token
       }
     }
   }, [router]);

@@ -1,13 +1,22 @@
 "use client";
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const router = useRouter(); // Initialize Next.js router
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = Cookies.get("authToken");
+    if (token) {
+      router.push("/home"); 
+    }
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,12 +26,15 @@ const Login = () => {
         { email, password }
       );
 
-      // Store token and user info in localStorage
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.user));
+      // Store token in cookies (valid for 7 days)
+      Cookies.set("authToken", response.data.token, { expires: 7, path: "/" });
+      Cookies.set("user", JSON.stringify(response.data.user), { expires: 7, path: "/" });
 
       // Redirect to home page
+      window.dispatchEvent(new Event("authChange"));
       router.push("/home");
+      // router.refresh();
+      // router.reload();
     } catch (err) {
       setError("Invalid email or password");
     }
@@ -59,7 +71,7 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-300"
+            className="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-300 hover:cursor-pointer"
           >
             Login
           </button>

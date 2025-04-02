@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import BlogItem from "./BlogItem";
+import { parseCookies } from "nookies";
 
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
@@ -21,23 +22,19 @@ const BlogList = () => {
 
   const handleDelete = async (blogId) => {
     try {
-      // Retrieve the token from localStorage
-      const token = localStorage.getItem("token");
-
-      // Ensure token exists before making the request
+      const cookies = parseCookies();
+      const token = cookies.authToken;
       if (!token) {
         console.error("No token found");
         return;
       }
 
-      // Make the DELETE request with the Authorization header
       await axios.delete(`https://wander-backend-production.up.railway.app/api/blogs/${blogId}`, {
         headers: {
-          Authorization: `Bearer ${token}`, // Include Bearer token in headers
+          Authorization: `Bearer ${token}`,
         },
       });
 
-      // Remove the deleted blog from the UI
       setBlogs(blogs.filter((blog) => blog._id !== blogId));
     } catch (error) {
       console.error("Error deleting blog:", error);
