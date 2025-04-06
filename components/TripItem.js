@@ -10,8 +10,8 @@ const TripItem = ({ trip, onDelete }) => {
       />
       <div className="flex-grow text-center sm:text-left">
         <h2 className="text-lg font-semibold">{trip.title}</h2>
-        <p className="text-sm text-gray-600">Host: {trip.host.name}</p>
-        <p className="text-sm text-gray-600">Email: {trip.host.email}</p>
+        <p className="text-sm text-gray-600">Host: {trip.host?.name || ""}</p>
+        <p className="text-sm text-gray-600">Email: {trip.host?.email || ""}</p>
         <p className="text-sm text-gray-700 mt-2">{trip.description}</p>
       </div>
       <button

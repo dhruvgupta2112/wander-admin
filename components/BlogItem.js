@@ -8,8 +8,8 @@ const BlogItem = ({ blog, onDelete }) => {
       />
       <div className="flex-grow text-center sm:text-left">
         <h2 className="text-lg font-semibold">{blog.title}</h2>
-        <p className="text-sm text-gray-600">Host: {blog.host.name}</p>
-        <p className="text-sm text-gray-600">Email: {blog.host.email}</p>
+        <p className="text-sm text-gray-600">Host: {blog.host?.name || "not found"}</p>
+        <p className="text-sm text-gray-600">Email: {blog.host?.email || "not found"}</p>
       </div>
       <button
         onClick={() => onDelete(blog._id)}
