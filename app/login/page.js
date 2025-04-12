@@ -21,8 +21,10 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      const apiBaseUrl = "https://wander.6ip.it/api";
+      console.log(apiBaseUrl);
       const response = await axios.post(
-        "https://wander-backend-production.up.railway.app/api/auth/login",
+        `${apiBaseUrl}/auth/login`,
         { email, password }
       );
 
@@ -33,8 +35,6 @@ const Login = () => {
       // Redirect to home page
       window.dispatchEvent(new Event("authChange"));
       router.push("/home");
-      // router.refresh();
-      // router.reload();
     } catch (err) {
       setError("Invalid email or password");
     }

@@ -8,6 +8,7 @@ const AdminUsersPage = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+  const apiBaseUrl = "https://wander.6ip.it/api";
 
   const fetchUsers = async () => {
     try {
@@ -19,7 +20,7 @@ const AdminUsersPage = () => {
         return;
       }
 
-      const response = await axios.get("https://wander-backend-production.up.railway.app/api/users/all-users", {
+      const response = await axios.get(`${apiBaseUrl}/users/all-users`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -43,7 +44,7 @@ const AdminUsersPage = () => {
       const cookies = parseCookies();
       const token = cookies.authToken;
 
-      await axios.delete(`https://wander-backend-production.up.railway.app/api/users/${id}`, {
+      await axios.delete(`${apiBaseUrl}/users/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

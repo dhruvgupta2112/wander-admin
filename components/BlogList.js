@@ -6,6 +6,7 @@ import { parseCookies } from "nookies";
 
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
+  const apiBaseUrl = "https://wander.6ip.it/api";
 
   useEffect(() => {
     fetchBlogs();
@@ -13,7 +14,7 @@ const BlogList = () => {
 
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get("https://wander-backend-production.up.railway.app/api/blogs");
+      const response = await axios.get(`${apiBaseUrl}/api/blogs`);
       setBlogs(response.data);
     } catch (error) {
       console.error("Error fetching blogs:", error);
@@ -29,7 +30,7 @@ const BlogList = () => {
         return;
       }
 
-      await axios.delete(`https://wander-backend-production.up.railway.app/api/blogs/${blogId}`, {
+      await axios.delete(`${apiBaseUrl}/blogs/${blogId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

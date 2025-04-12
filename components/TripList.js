@@ -6,6 +6,7 @@ import { parseCookies } from "nookies";
 
 const TripsList = () => {
   const [trips, setTrips] = useState([]);
+  const apiBaseUrl = "https://wander.6ip.it/api";
 
   useEffect(() => {
     fetchTrips();
@@ -20,7 +21,7 @@ const TripsList = () => {
         return;
       }
 
-      const response = await axios.get("https://wander-backend-production.up.railway.app/api/trips/open", {
+      const response = await axios.get(`${apiBaseUrl}/trips/open`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -40,7 +41,7 @@ const TripsList = () => {
         return;
       }
 
-      await axios.delete(`https://wander-backend-production.up.railway.app/api/trips/${tripId}`, {
+      await axios.delete(`${apiBaseUrl}/trips/${tripId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
