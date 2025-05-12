@@ -70,7 +70,7 @@ const AdminUsersPage = () => {
               <th className="px-6 py-3 text-left">Friends</th>
               <th className="px-6 py-3 text-left">Public Posts</th>
               <th className="px-6 py-3 text-left">Trip History</th>
-              <th className="px-6 py-3 text-left">Actions</th>
+              {/* <th className="px-6 py-3 text-left">Actions</th> */}
             </tr>
           </thead>
           <tbody>
@@ -88,14 +88,14 @@ const AdminUsersPage = () => {
                 <td className="px-6 py-4 text-center text-green-700 font-semibold">{user.friends?.length || 0}</td>
                 <td className="px-6 py-4 text-center text-blue-700 font-semibold">{user.publicPosts?.length || 0}</td>
                 <td className="px-6 py-4 text-center text-purple-700 font-semibold">{user.tripHistory?.length || 0}</td>
-                <td className="px-6 py-4">
+                {/* <td className="px-6 py-4">
                   <button
                     onClick={() => handleDelete(user._id)}
                     className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition hover:cursor-pointer"
                   >
                     Delete
                   </button>
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>
