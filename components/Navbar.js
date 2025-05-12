@@ -50,9 +50,9 @@ const Navbar = () => {
 
       {/* Desktop Nav */}
       <div className="hidden md:flex items-center space-x-6">
-        <button onClick={() => router.push("/blogs")} className="hover:underline">Blogs</button>
-        <button onClick={() => router.push("/trips")} className="hover:underline">Trips</button>
-        <button onClick={() => router.push("/users")} className="hover:underline">Users</button>
+        <button onClick={() => router.push("/blogs")} className="hover:underline hover:cursor-pointer">Blogs</button>
+        <button onClick={() => router.push("/trips")} className="hover:underline hover:cursor-pointer">Trips</button>
+        <button onClick={() => router.push("/users")} className="hover:underline hover:cursor-pointer">Users</button>
 
         <div className="relative">
           <img
